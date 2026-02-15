@@ -239,7 +239,7 @@ body{
 .grid{
   display: grid;
   grid-template-columns: repeat(2,120px);
-  gap: 27px;
+  gap: 35px;
   justify-content: center;
 }
 
