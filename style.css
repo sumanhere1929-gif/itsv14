@@ -239,12 +239,12 @@ body{
 .grid{
   display: grid;
   grid-template-columns: repeat(2,120px);
-  gap: 35px;
+  gap: 30px;
   justify-content: center;
 }
 
 .grid img{
-  width: 150px;
+  width: 140px;
   height: 250px;
   border-radius: 15px;
 
