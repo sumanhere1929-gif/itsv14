@@ -526,60 +526,169 @@ if(page1){
   /* =========================
      PAGE 2 – TIC TAC TOE
   ========================= */
-  const board = document.getElementById('board');
-  let cells = Array(9).fill('');
+const board = document.getElementById('board');
+let cells = Array(9).fill('');
+let gameOver = false;
 
-  function createBoard(){
-    if(!board) return;
+function createBoard(){
+  if(!board) return;
 
-    board.innerHTML='';
-    cells.forEach((_,i)=>{
-      const cell=document.createElement('div');
-      cell.classList.add('cell');
-      cell.onclick=()=>move(i);
-      board.appendChild(cell);
-    });
+  board.innerHTML='';
+  cells.forEach((_,i)=>{
+    const cell=document.createElement('div');
+    cell.classList.add('cell');
+    cell.onclick=()=>move(i);
+    board.appendChild(cell);
+  });
+}
+
+function move(i){
+  if(cells[i]!=='' || gameOver) return;
+
+  cells[i]='player';
+  board.children[i].innerHTML='<img src="Screenshot 2026-02-15 103529.png">';
+
+  if(checkWin('player')){
+    document.getElementById('result').innerText='You Win 🎉';
+    gameOver = true;
+    return;
   }
 
-  function move(i){
-    if(cells[i]!=='') return;
+  if(cells.every(c => c !== '')){
+    document.getElementById('result').innerText='Match Draw 🤝';
+    gameOver = true;
+    return;
+  }
 
-    cells[i]='player';
-    board.children[i].innerHTML='<img src="Screenshot 2026-02-15 103529.png">';
+  computerMove();
+}
 
-    if(checkWin('player')){
-      document.getElementById('result').innerText='You win';
+function computerMove(){
+  let empty = cells.map((v,i)=> v==='' ? i : null).filter(v=>v!==null);
+
+  if(empty.length === 0){
+    document.getElementById('result').innerText = 'Match Draw 🤝';
+    gameOver = true;
+    return;
+  }
+
+  // 1️⃣ Try to win
+  for(let i of empty){
+    cells[i] = 'comp';
+    if(checkWin('comp')){
+      board.children[i].innerHTML='<img src="suman (1).png">';
+      document.getElementById('result').innerText='I Win 😎';
+      gameOver = true;
       return;
     }
-
-    computerMove();
+    cells[i] = '';
   }
 
-  function computerMove(){
-    let empty=cells.map((v,i)=>v===''?i:null).filter(v=>v!==null);
-    if(empty.length===0) return;
-
-    let random=empty[Math.floor(Math.random()*empty.length)];
-    cells[random]='comp';
-    board.children[random].innerHTML='<img src="suman (1).png">';
-
-    if(checkWin('comp')){
-      document.getElementById('result').innerText='I win the match';
+  // 2️⃣ Block player
+  for(let i of empty){
+    cells[i] = 'player';
+    if(checkWin('player')){
+      cells[i] = 'comp';
+      board.children[i].innerHTML='<img src="suman (1).png">';
+      return;
     }
+    cells[i] = '';
   }
 
-  function checkWin(p){
-    const win=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-    return win.some(c=>c.every(i=>cells[i]===p));
+  // 3️⃣ Take center
+  if(cells[4] === ''){
+    cells[4] = 'comp';
+    board.children[4].innerHTML='<img src="suman (1).png">';
+    return;
   }
 
-  window.resetGame = function(){
-    cells=Array(9).fill('');
-    document.getElementById('result').innerText='';
-    createBoard();
-  };
+  // 4️⃣ Random move
+  let random = empty[Math.floor(Math.random()*empty.length)];
+  cells[random] = 'comp';
+  board.children[random].innerHTML='<img src="suman (1).png">';
 
+  if(checkWin('comp')){
+    document.getElementById('result').innerText='I Win 😎';
+    gameOver = true;
+    return;
+  }
+
+  if(cells.every(c => c !== '')){
+    document.getElementById('result').innerText='Match Draw 🤝';
+    gameOver = true;
+  }
+}
+
+function checkWin(p){
+  const win=[[0,1,2],[3,4,5],[6,7,8],
+             [0,3,6],[1,4,7],[2,5,8],
+             [0,4,8],[2,4,6]];
+  return win.some(c=>c.every(i=>cells[i]===p));
+}
+
+window.resetGame = function(){
+  cells=Array(9).fill('');
+  document.getElementById('result').innerText='';
+  gameOver = false;
   createBoard();
+};
+
+createBoard();
+
+  // const board = document.getElementById('board');
+  // let cells = Array(9).fill('');
+
+  // function createBoard(){
+  //   if(!board) return;
+
+  //   board.innerHTML='';
+  //   cells.forEach((_,i)=>{
+  //     const cell=document.createElement('div');
+  //     cell.classList.add('cell');
+  //     cell.onclick=()=>move(i);
+  //     board.appendChild(cell);
+  //   });
+  // }
+
+  // function move(i){
+  //   if(cells[i]!=='') return;
+
+  //   cells[i]='player';
+  //   board.children[i].innerHTML='<img src="Screenshot 2026-02-15 103529.png">';
+
+  //   if(checkWin('player')){
+  //     document.getElementById('result').innerText='You win';
+  //     return;
+  //   }
+
+  //   computerMove();
+  // }
+
+  // function computerMove(){
+  //   let empty=cells.map((v,i)=>v===''?i:null).filter(v=>v!==null);
+  //   if(empty.length===0) return;
+
+  //   let random=empty[Math.floor(Math.random()*empty.length)];
+  //   cells[random]='comp';
+  //   board.children[random].innerHTML='<img src="suman (1).png">';
+
+  //   if(checkWin('comp')){
+  //     document.getElementById('result').innerText='I win the match';
+  //   }
+  // }
+
+  // function checkWin(p){
+  //   const win=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  //   return win.some(c=>c.every(i=>cells[i]===p));
+  // }
+
+  // window.resetGame = function(){
+  //   cells=Array(9).fill('');
+  //   document.getElementById('result').innerText='';
+  //   createBoard();
+  // };
+
+  // createBoard();
 
 
   /* =========================
