@@ -239,13 +239,13 @@ body{
 .grid{
   display: grid;
   grid-template-columns: repeat(2,120px);
-  gap: 30px;
+  gap: 23px;
   justify-content: center;
 }
 
 .grid img{
-  width: 140px;
-  height: 250px;
+  width: 130px;
+  height: 230px;
   border-radius: 15px;
 
   /* Border */
