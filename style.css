@@ -239,7 +239,7 @@ body{
 .grid{
   display:grid;
   grid-template-columns:repeat(2,120px); /* 2×2 layout */
-  gap:50px;
+  gap:30px;
   justify-content:center;
 }
 
