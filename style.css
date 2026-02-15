@@ -239,12 +239,12 @@ body{
 .grid{
   display:grid;
   grid-template-columns:repeat(2,120px); /* 2×2 layout */
-  gap:30px;
+  gap:40px;
   justify-content:center;
 }
 
 .grid img{
-  width:150px;
+  width:140px;
   height:250px;
   border-radius:12px;
 }
