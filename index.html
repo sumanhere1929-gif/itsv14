@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BOX APP</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav">
+  <button class="btn1" onclick="showPage('page1')">PHASE</button>
+  <button class="btn2" onclick="showPage('page2')">LOVE GAME</button>
+  <button class="btn3" onclick="showPage('page3')">MEMORIES</button>
+  <button class="btn4" onclick="showPage('page4')">MESSAGE</button>
+</div>
+
+</nav>
+
+<!-- <section id="page1" class="page active">
+<h2>WHAT IS YOUR NAME</h2>
+<div class="btn-group">
+<button class="yes" onclick="showPopup()">YES</button>
+<button class="no">NO</button>
+</div>
+<p id="afterText"></p>
+</section> -->
+<section id="page1" class="page active">
+
+  <h2>will you be my valentine babe 💖?</h2>
+
+  <div class="btn-group" id="btnArea">
+    <button class="yes" onclick="showPopup()">YES</button>
+    <button class="no" id="noBtn">NO</button>
+  </div>
+
+  <p id="afterText"></p>
+
+  <!-- random valentine message -->
+  <p id="randomMsg" class="random-msg">bole yar 💖</p>
+
+</section>
+
+
+<section id="page2" class="page">
+<h2>TIC TAC TOE</h2>
+<h3>(Lets play together can u beat me)</h3>
+<div class="board" id="board"></div>
+<button class="reset-btn" onclick="resetGame()">RESET GAME</button>
+<p id="result"></p>
+</section>
+
+<section id="page3" class="page">
+<h2>some memories</h2>
+<div class="grid">
+<img src="WhatsApp Image 2026-02-08 at 10.50.35 PM.jpeg"/>
+<img src="WhatsApp Image 2026-02-09 at 12.46.52 AM (1).jpeg"/>
+<img src="WhatsApp Image 2026-02-09 at 12.46.52 AM (2).jpeg"/>
+<img src="WhatsApp Image 2026-02-09 at 12.46.52 AM.jpeg"/>
+</div>
+</section>
+
+<section id="page4" class="page">
+
+  <div class="text-box">
+
+    <div class="text-content">
+      <p style="font-family: cursive;">
+        <!-- You can write up to 500 words here -->
+        It is a special day to express love and care for the people who are important in our life 💖 The day is connected to Saint Valentine, who is remembered for spreading love and kindness 🌹 On this day, people give flowers 🌸, chocolates 🍫, and sweet messages 💌 to show their feelings. Love is not only for couples, but also for friends and family 🤗 This day reminds us to be kind, thankful, and caring every day 💕 Spread love, share smiles, and stay happy always. anace again i love you darlling
+      </p>
+    </div>
+
+    <button onclick="openFinal()">open it</button>
+
+  </div>
+
+</section>
+
+
+<div id="popup" class="popup">
+<img src="popup.jpg"/>
+<p>HOW IS IT ???</p>
+</div>
+
+<div id="finalPopup" class="popup">
+<img src="final.jpg"/>
+<p>Some special text under image 💖</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

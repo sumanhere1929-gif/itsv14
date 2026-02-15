@@ -1,0 +1,380 @@
+/* =========================
+   GLOBAL RESET – WHOLE APP
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Orbitron&family=Monoton&family=Poppins&display=swap');
+.btn1{
+  font-family: 'Pacifico', cursive;
+}
+
+.btn2{
+  font-family: 'Orbitron', sans-serif;
+}
+
+.btn3{
+  font-family: 'Monoton', cursive;
+}
+
+.btn4{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
+}
+
+body{
+  background:#0f172a;   /* dark background */
+  color:white;          /* white text */
+  text-align:center;    /* center text */
+}
+
+
+/* =========================
+   NAVIGATION BAR – BOX1 BOX2 BOX3 BOX4
+========================= */
+.nav{
+  display:flex;                 
+  justify-content:space-around; /* buttons in row with space */
+  padding:10px;
+  background:#F075AE;           /* dark blue bar */
+  position:fixed;               /* always on top */
+  width:100%;
+  top:0;
+}
+
+/* ALL NAV BUTTONS – SOFT DEFAULT GLOW */
+.nav button{
+  border:none;
+  padding:7px 10px;
+  color:rgb(0, 0, 0);
+  border-radius:80px;
+  opacity:0.9;                /* little dull */
+  transition:0.4s;
+  box-shadow:0 0 6px rgba(17, 1, 1, 0.3);
+}
+
+
+/* //ADDING COLOUR// */
+.btn1{background:#f3eef1;}
+.btn2{background:#38bdf8;}
+.btn3{background:#facc15;}
+.btn4{background:#4ade80;}
+/* NAV GLOW EFFECT */
+.nav{
+  box-shadow:
+    0 0 10px #161616,
+    0 0 20px #F075AE,
+    0 0 30px #F075AE;
+}
+.nav button.active{
+  opacity:1;                  /* full bright */
+  transform:scale(1.12);      /* slightly bigger */
+}
+.btn1.active{
+  box-shadow:0 0 12px #f3eef1, 0 0 22px #453f43;
+}
+
+.btn2.active{
+  box-shadow:0 0 12px #38bdf8, 0 0 22px #38bdf8;
+}
+
+.btn3.active{
+  box-shadow:0 0 12px #facc15, 0 0 22px #facc15;
+}
+
+.btn4.active{
+  box-shadow:0 0 12px #4ade80, 0 0 22px #4ade80;
+}
+
+
+/* MATCHING GLOW */
+.btn1.active{box-shadow:0 0 12px #f3eef1;}
+.btn2.active{box-shadow:0 0 12px #38bdf8;}
+.btn3.active{box-shadow:0 0 12px #facc15;}
+.btn4.active{box-shadow:0 0 12px #4ade80;}
+
+
+
+/* =========================
+   PAGE CONTAINER – ALL PAGES
+========================= */
+.page{
+  display:none;          /* hidden by default */
+  padding-top:80px;      /* space for nav bar */
+  min-height:100vh;      /* full mobile screen */
+  flex-direction:column; 
+  justify-content:center;
+  align-items:center;
+  gap:20px;              /* spacing between elements */
+}
+
+/* ACTIVE PAGE – SHOWN BY JS */
+.active{
+  display:flex;
+}
+
+
+/* =========================
+   PAGE 1 – YES / NO BUTTONS
+========================= */
+.btn-group button{
+  padding:12px 20px;
+  margin:10px;
+  border-radius:10px;
+  border:none;
+}
+
+/* YES BUTTON – GREEN GLOW */
+.yes{
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
+  box-shadow:0 0 10px #22c55e, 0 0 20px #22c55e;
+  transition:0.3s;
+}
+
+/* YES TAP ANIMATION */
+.yes:active{
+  transform:scale(0.95);
+  box-shadow:0 0 25px #22c55e;
+}
+
+
+/* NO BUTTON – RED GLOW */
+.no{
+  background:#ef4444;
+  color:white;
+  font-weight:bold;
+  box-shadow:0 0 10px #ef4444, 0 0 20px #ef4444;
+  transition:0.3s;
+}
+
+/* NO HOVER/TAP EFFECT */
+.no:active{
+  transform:scale(0.95);
+  box-shadow:0 0 25px #ef4444;
+}
+
+/* PAGE 1 QUESTION */
+#page1 h2{
+  font-family:'Great Vibes', cursive;
+  font-size:34px;
+  color:#ad0909;
+  text-shadow:0 0 10px #ca9587, 0 0 20px #d8d9c7;
+  letter-spacing:2px;
+}
+.btn-group button{
+  font-family:'Poppins', sans-serif;
+  font-size:16px;
+  font-weight:bold;
+}
+.random-msg{
+  position:fixed;
+  color:#101010;
+  font-family:'Great Vibes', cursive;
+  font-size:30px;
+  display:none;
+  text-shadow:0 0 8px #fb7185;
+  pointer-events:none;
+  animation:floatUp 1s ease forwards;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatUp{
+  0%{opacity:0; transform:translateY(10px);}
+  50%{opacity:1;}
+  100%{opacity:0; transform:translateY(-20px);}
+}
+
+
+
+/* =========================
+   PAGE 2 – TIC TAC TOE BOARD
+========================= */
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,80px); /* 3×3 grid */
+  gap:10px;
+  justify-content:center;
+}
+
+.cell{
+  width:80px;
+  height:80px;
+  background:#607086;     /* cell color */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:10px;
+}
+
+/* PLAYER / COMPUTER IMAGE INSIDE CELL */
+.cell img{
+  width:60px;
+  height:60px;
+}
+/* RESET BUTTON – TIC TAC TOE */
+.reset-btn{
+  background: linear-gradient(135deg,#fb7185,#f43f5e);
+  border:none;
+  padding:12px 18px;
+  color:white;
+  font-weight:bold;
+  border-radius:12px;
+  margin-top:15px;
+  box-shadow:0 0 10px #fb7185;
+  transition:0.3s;
+}
+
+/* HOVER / TAP EFFECT */
+/* =========================
+   PAGE 3 – IMAGE GRID (4 PHOTOS)
+========================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,120px); /* 2×2 layout */
+  gap:10px;
+  justify-content:center;
+}
+
+.grid img{
+  width:120px;
+  height:120px;
+  border-radius:12px;
+}
+
+
+
+/* =========================
+   PAGE 4 – TEXT BOX
+========================= */
+.text-box{
+  background: #827bdc;  /* soft dark purple (looks good on pink) */
+  color: white;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 350px;
+  height: 355px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Soft Shadow */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+  /* Pink Glow Effect */
+  box-shadow:
+    0 0 200px rgba(255, 182, 193, 0.8),
+    0 0 25px rgba(255, 105, 180, 0.6);
+
+  border: 2px solid #ff66c4;
+}
+
+
+/* SCROLLABLE TEXT AREA */
+.text-content{
+  overflow-y:auto;       /* enables scroll */
+  text-align:left;
+  margin-bottom:10px;
+  padding-right:5px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins&display=swap');
+/* PAGE 2 – GAME TITLE */
+#page2 h2{
+  font-family: 'Orbitron', sans-serif;
+  font-size:30px;
+  color:#e7ede6;
+  text-shadow:0 0 44px #060a0c, 0 0 11px #000000;
+  letter-spacing:2px;
+}
+#page2 h3{
+  font-family:Pacifico;
+  font-size:14px;
+  color:#e56868;
+  /* text-shadow:0 0 10px #e3e9eb, 0 0 20px #38bdf8; */
+  letter-spacing:2px;
+}
+
+
+/* SUBTITLE */
+#result {
+  font-family: bold;   /* font-family:bold is wrong */
+  font-size: 20px;
+  margin-top: 12px;
+  color: #010505;
+  text-shadow: 0 0 8px #f0efec, 0 0 16px #dad8d0;
+  text-transform: uppercase;   /* 👈 This makes all letters CAPITAL */
+}
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,80px);
+  gap:10px;
+  justify-content:center;
+  padding:10px;
+  border-radius:15px;
+  background:rgba(151, 221, 138, 0.4);
+  box-shadow:0 0 15px #38bdf8;
+}
+
+
+
+
+/* =========================
+   POPUP – USED FOR PAGE 1 & PAGE 4
+========================= */
+.popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%); /* center popup */
+  background:#b577b1;
+  padding:20px;
+  border-radius:12px;
+  display:none;                   /* hidden until JS shows */
+}
+
+/* POPUP IMAGE */
+.popup img{
+  width:350px;
+  border-radius:10px;
+}
+/* Valentine popup message */
+
+/* PAGE 1 BACKGROUND IMAGE */
+#page1{
+  background-image: url("page11.jpg");  /* your image name */
+  background-size: cover;            /* full mobile screen */
+  background-position: center;       /* center image */
+  background-repeat: no-repeat;      /* no repeat */
+}
+/* PAGE 2 BACKGROUND IMAGE */
+#page2{
+  background-image: url("Screenshot 2026-02-15 074125.png");   /* your image name */
+  background-size: cover;             /* full screen */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* PAGE 2 BACKGROUND IMAGE */
+#page4{
+  background-image: url("pg4.jpg");   /* your image name */
+  background-size: cover;             /* full screen */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#page3{
+  background-image: url("page 3.jpg");   /* your image name */
+  background-size: cover;             /* full screen */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+
